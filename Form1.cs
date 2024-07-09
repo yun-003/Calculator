@@ -20,6 +20,7 @@ namespace Calculator
         //int ari_count = 0;
         //string ari_nxt = "";
         //bool is_ari_count = false;
+        bool sw = false;
 
         public Calculator()
         {
@@ -77,15 +78,22 @@ namespace Calculator
             
 
             if (visual.Text == "0" || visual.Text == "+" || visual.Text == "-"
-                || visual.Text == "*" || visual.Text == "/" 
-                || vis > 0)
+                || visual.Text == "*" || visual.Text == "/" || sw)
+            {
+                //|| vis > 0)
                 visual.Text = num;
+                sw = false;
+            }
+                
             else
                 visual.Text += num;
         }
 
         private void num0_Click(object sender, EventArgs e)
         {
+            if (sw)
+                visual.Text = "0";
+
             if (visual.Text != "0")
                 visual.Text += num0.Text;
         }
@@ -108,6 +116,10 @@ namespace Calculator
             //        ari_count = 0;
             //}
 
+            if(vis_ari == "")
+            {
+                vis = double.Parse(visual.Text);
+            }
             switch (vis_ari)
             {
                 case "+":
@@ -181,10 +193,11 @@ namespace Calculator
             {
                 vis = double.Parse(visual.Text);
                 vis_ari = ari;
-                visual.Text = "";
+                //visual.Text = "";
                 //visual.Text = vis_ari;
                 point_cnt = 0;
             }
+            sw = true;
 
             //switch (ari)
             //{
